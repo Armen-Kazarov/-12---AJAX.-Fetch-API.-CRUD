@@ -13,7 +13,7 @@ const countryInfoElemRef = {
   inputSearchInfo: document.querySelector('.search-info-country-js'),
 };
 
-const searchCountryHandle = (event) => {
+const searchCountryHandle = () => {
   let name = countryInfoElemRef.inputSearchInfo.value.trim();
 
   if(name !== '') {
