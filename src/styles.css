@@ -1,0 +1,44 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  text-align: center;
+  margin-top: 2rem;
+  font-family: sans-serif;
+}
+
+.search-info-country {
+  outline: none;
+  border: 1px solid #ae9494;
+  padding: 10px;
+}
+
+.list-country {
+  margin: 0 auto;
+}
+
+.country-information__title {
+  text-align: center;
+}
+
+.country-information__row {
+  display: flex;
+  justify-content: space-around;
+}
+
+.country-information__flag-wrapper {
+  width: 50%;
+}
