@@ -7,14 +7,12 @@ import _ from 'lodash';
 import templateCountryList from '../templates/countryListTemplate.hbs';
 import countryInfo from '../templates/countryInfo.hbs';
 
-const countryInfoElemRef = {
-  countryListRef: document.querySelector('.list-country-js'),
-  countryInformationRef: document.querySelector('.country-information'),
-  inputSearchInfo: document.querySelector('.search-info-country-js'),
-};
+const countryListRef = document.querySelector('.list-country-js');
+const countryInformationRef = document.querySelector('.country-information');
+let inputSearchInfo = document.querySelector('.search-info-country-js');
 
 const searchCountryHandle = () => {
-  let name = countryInfoElemRef.inputSearchInfo.value.trim();
+  let name = inputSearchInfo.value.trim();
 
   if(name !== '') {
     fetch(`https://restcountries.eu/rest/v2/name/${name}`)
@@ -22,10 +20,10 @@ const searchCountryHandle = () => {
       .then(response => {
 
         if(response.length >= 2 && response.length <= 10) {
-          countryInfoElemRef.countryListRef.innerHTML = templateCountryList(response);
-          countryInfoElemRef.countryListRef.style.visibility = 'visible';
-          countryInfoElemRef.countryInformationRef.style.visibility = 'hidden';
-          countryInfoElemRef.countryInformationRef.innerHTML = '';
+          countryListRef.innerHTML = templateCountryList(response);
+          countryListRef.style.visibility = 'visible';
+          countryInformationRef.style.visibility = 'hidden';
+          countryInformationRef.innerHTML = '';
           success({
             title: 'Success!',
             text: 'That thing that you were trying to do worked.',
@@ -39,10 +37,10 @@ const searchCountryHandle = () => {
           }
 
         if (response.length === 1) {
-          countryInfoElemRef.countryInformationRef.innerHTML = countryInfo(response);
-          countryInfoElemRef.countryInformationRef.style.visibility = 'visible';
-          countryInfoElemRef.countryListRef.style.visibility = 'hidden';
-          countryInfoElemRef.countryListRef.innerHTML = '';
+          countryInformationRef.innerHTML = countryInfo(response);
+          countryInformationRef.style.visibility = 'visible';
+          countryListRef.style.visibility = 'hidden';
+          countryListRef.innerHTML = '';
         }
       })
       .catch(error => {
@@ -51,6 +49,6 @@ const searchCountryHandle = () => {
   }
 };
 
-countryInfoElemRef.inputSearchInfo.addEventListener('input',
+inputSearchInfo.addEventListener('input',
   _.debounce(searchCountryHandle, 500, {
 }));
